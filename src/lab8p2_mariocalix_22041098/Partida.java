@@ -1,10 +1,11 @@
-
 package lab8p2_mariocalix_22041098;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Partida {
+public class Partida implements Serializable {
+
     private String nombre;
     private Date fecha_creacion;
     private ArrayList<Estrella> estrellas = new ArrayList();
@@ -54,5 +55,5 @@ public class Partida {
     public String toString() {
         return "Partida{" + "nombre=" + nombre + ", fecha_creacion=" + fecha_creacion + ", estrellas=" + estrellas + ", jugadores=" + jugadores + '}';
     }
-    
+
 }
