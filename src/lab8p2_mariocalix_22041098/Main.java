@@ -60,7 +60,7 @@ public class Main extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         tf_velocidadJ = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cb_partidasJugad = new javax.swing.JComboBox<>();
         jButton6 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -235,8 +235,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel10.setText("Partida");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton6.setText("Crear Jugador");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -258,7 +256,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10)
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_partidasJugad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addGap(49, 49, 49))
         );
@@ -272,7 +270,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_nombreJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_partidasJugad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -361,6 +359,7 @@ public class Main extends javax.swing.JFrame {
         
         cb_partidas.addItem(agregarValor);
         cb_PartidasCrearEstre.addItem(agregarValor);
+        cb_partidasJugad.addItem(agregarValor);
     }//GEN-LAST:event_jb_crearPartidaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -382,15 +381,18 @@ public class Main extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // Crear Estrella
         
-        Partida p = new Partida(tf_nombrePartida.getText(), new Date());
+        Estrella p = new Estrella(Integer.parseInt(tf_distancia.getText()), 
+                ta_descripcion.getText(), tf_nombreEstrella.getText());
         
-        adminPartida ap = new adminPartida("./partidas.cbm");
+        adminEstrella ap = new adminEstrella("./estrellas.cbm");
         ap.cargarArchivo();
-        ap.setPartida(p);
+        ap.setEstrella(p);
         ap.escribirArchivo();
         JOptionPane.showMessageDialog(this,
-                "Partida creada exitosamente");
-        tf_nombrePartida.setText("");
+                "Estrella creada exitosamente");
+        tf_nombreEstrella.setText("");
+        tf_distancia.setText("");
+        ta_descripcion.setText("");
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**
@@ -431,12 +433,12 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_PartidasCrearEstre;
     private javax.swing.JComboBox<String> cb_partidas;
+    private javax.swing.JComboBox<String> cb_partidasJugad;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
