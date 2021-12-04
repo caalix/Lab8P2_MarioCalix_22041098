@@ -1,7 +1,9 @@
 
 package lab8p2_mariocalix_22041098;
 
-public class Estrella {
+import java.io.Serializable;
+
+public class Estrella implements Serializable{
     private int distancia;
     private String descripcion, nombre;
 

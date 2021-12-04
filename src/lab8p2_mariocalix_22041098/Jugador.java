@@ -1,7 +1,9 @@
 
 package lab8p2_mariocalix_22041098;
 
-public class Jugador {
+import java.io.Serializable;
+
+public class Jugador implements Serializable{
     private int velocidad;
     private String nombre;
 

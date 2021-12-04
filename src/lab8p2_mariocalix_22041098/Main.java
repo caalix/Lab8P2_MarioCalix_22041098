@@ -8,6 +8,8 @@ package lab8p2_mariocalix_22041098;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.w3c.dom.views.DocumentView;
+import sun.security.timestamp.TimestampToken;
 
 /**
  *
@@ -37,14 +39,19 @@ public class Main extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        pb_completacion = new javax.swing.JProgressBar();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaPartida = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton8 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cb_jugadoresI = new javax.swing.JComboBox<>();
+        jB_agregar = new javax.swing.JButton();
+        cb_estrellasI = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -74,7 +81,7 @@ public class Main extends javax.swing.JFrame {
         tf_velocidadJ = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         cb_partidasJugad = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        jb_crearJugador = new javax.swing.JButton();
 
         jLabel11.setText("Partida:");
 
@@ -86,7 +93,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel15.setText("Distancia Recorrida:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPartida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -114,13 +121,54 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tablaPartida);
 
         jButton4.setText("Comenzar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Pausar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
-        jButton8.setText("Agregar");
+        cb_jugadoresI.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_jugadoresIItemStateChanged(evt);
+            }
+        });
+        cb_jugadoresI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_jugadoresIActionPerformed(evt);
+            }
+        });
+
+        jB_agregar.setText("Agregar");
+        jB_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_agregarMouseClicked(evt);
+            }
+        });
+        jB_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jB_agregarActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("jLabel16");
+
+        jLabel17.setText("jLabel17");
+
+        jLabel18.setText("jLabel18");
+
+        jLabel19.setText("jLabel19");
+
+        jLabel20.setText("jLabel20");
 
         javax.swing.GroupLayout jd_iniciarPartidaLayout = new javax.swing.GroupLayout(jd_iniciarPartida.getContentPane());
         jd_iniciarPartida.getContentPane().setLayout(jd_iniciarPartidaLayout);
@@ -130,46 +178,67 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pb_completacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
                         .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
+                            .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel16))
                             .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
                                 .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel13))
-                                .addGap(121, 121, 121)
+                                    .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel17))
+                                    .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel18)))
+                                .addGap(71, 71, 71)
                                 .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel14))))
+                                    .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel19))
+                                    .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel20)))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_jugadoresI, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jB_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cb_estrellasI, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jd_iniciarPartidaLayout.setVerticalGroup(
             jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_iniciarPartidaLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel11)
+                .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel16))
                 .addGap(18, 18, 18)
                 .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel14))
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel19))
                 .addGap(18, 18, 18)
                 .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel15))
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel20))
                 .addGap(18, 18, 18)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pb_completacion, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -178,9 +247,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_iniciarPartidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_jugadoresI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jB_agregar)
+                    .addComponent(cb_estrellasI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -197,6 +266,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton1.setText("Iniciar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Eliminar Partida");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -281,12 +355,23 @@ public class Main extends javax.swing.JFrame {
 
         jLabel6.setText("Partida");
 
+        cb_PartidasCrearEstre.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_PartidasCrearEstreItemStateChanged(evt);
+            }
+        });
+
         jLabel7.setText("Nombre");
 
         jButton5.setText("Crear Estrella");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
+            }
+        });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -345,10 +430,15 @@ public class Main extends javax.swing.JFrame {
 
         jLabel10.setText("Partida");
 
-        jButton6.setText("Crear Jugador");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_crearJugador.setText("Crear Jugador");
+        jb_crearJugador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
+                jb_crearJugadorMouseClicked(evt);
+            }
+        });
+        jb_crearJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_crearJugadorActionPerformed(evt);
             }
         });
 
@@ -367,7 +457,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10)
                     .addComponent(cb_partidasJugad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                    .addComponent(jb_crearJugador, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 .addGap(49, 49, 49))
         );
         jPanel4Layout.setVerticalGroup(
@@ -386,7 +476,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_velocidadJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
+                    .addComponent(jb_crearJugador))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
@@ -418,7 +508,7 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+    private void jb_crearJugadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearJugadorMouseClicked
         // Crear Jugador
         Jugador p = new Jugador(Integer.parseInt(tf_velocidadJ.getText()),
                 tf_nombreJ.getText());
@@ -431,7 +521,7 @@ public class Main extends javax.swing.JFrame {
                 "Jugador creado exitosamente");
         tf_velocidadJ.setText("");
         tf_nombreJ.setText("");
-    }//GEN-LAST:event_jButton6MouseClicked
+    }//GEN-LAST:event_jb_crearJugadorMouseClicked
 
     private void jb_crearPartidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearPartidaMouseClicked
         // Crear Partida
@@ -505,6 +595,111 @@ public class Main extends javax.swing.JFrame {
         ta_descripcion.setText("");
     }//GEN-LAST:event_jButton5MouseClicked
 
+    private void cb_jugadoresIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_jugadoresIActionPerformed
+        // Combo box jugadores jdialog
+        
+    }//GEN-LAST:event_cb_jugadoresIActionPerformed
+
+    private void jb_crearJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_crearJugadorActionPerformed
+        // Combo box actaulizar jugadores
+        String agregarValorNombre = tf_nombreJ.getText();
+        
+        cb_jugadoresI.addItem(agregarValorNombre);
+    }//GEN-LAST:event_jb_crearJugadorActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // Combo box actualizar estrellas 
+        String agregarValorEstrellas = tf_nombreEstrella.getText();
+        
+        cb_estrellasI.addItem(agregarValorEstrellas);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cb_PartidasCrearEstreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_PartidasCrearEstreItemStateChanged
+        // TODO add your handling code here:
+        /*if (evt.getStateChange() == 1) {
+            Estrella temp = (Estrella) cb_PartidasCrearEstre.getSelectedItem();
+            pos=cb_PartidasCrearEstre.getSelectedIndex();
+            if (temp != null) {
+                tf_nombreEstrella.setText(temp.getNombre());
+                tf_distancia.setText(Integer.toString(temp.getDistancia()));
+                ta_descripcion.setText(temp.getDescripcion());
+                
+
+                
+            }//fin if
+        }//fin changed*/
+    }//GEN-LAST:event_cb_PartidasCrearEstreItemStateChanged
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        openIniciar();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jB_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_agregarMouseClicked
+        // Agregar a la tabla 
+        DefaultTableModel modelo = (DefaultTableModel)tablaPartida.getModel();
+        Jugador j = (Jugador)cb_jugadoresI.getSelectedItem();
+        Estrella e = (Estrella)cb_estrellasI.getSelectedItem();
+        modelo.addRow(new Object[]{j.getNombre(),
+        j.getVelocidad(),
+        e.getNombre(),
+        e.getDistancia(),
+        "Espera"});
+        
+        
+        
+    }//GEN-LAST:event_jB_agregarMouseClicked
+
+    private void cb_jugadoresIItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_jugadoresIItemStateChanged
+        /*if (evt.getStateChange() == 2) {
+                Jugador s = (Jugador)
+                        cb_jugadoresI.getSelectedItem();
+                Object[] newrow = {
+                    s.getNombre(),
+                    s.getVelocidad(),
+                };                
+                DefaultTableModel modelo
+                        = (DefaultTableModel) jTable1.getModel();
+                modelo.addRow(newrow);
+                jTable1.setModel(modelo);                            
+            }*/
+    }//GEN-LAST:event_cb_jugadoresIItemStateChanged
+
+    private void jB_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_agregarActionPerformed
+        /*DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+        Jugador j = (Jugador)cb_jugadoresI.getSelectedItem();
+        Estrella e = (Estrella)cb_estrellasI.getSelectedItem();
+        modelo.addRow(new Object[]{j.getNombre(),
+        j.getVelocidad(),
+        e.getNombre(),
+        e.getDistancia(),
+        "Espera"});*/
+    }//GEN-LAST:event_jB_agregarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        distancia.start();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        distancia.stop();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    int seg;
+    
+    Thread distancia = new Thread(){
+        public void run(){
+            Jugador j = (Jugador)cb_jugadoresI.getSelectedItem();
+            
+            try {
+                for(seg=1;seg<=100;seg++){
+                    
+                    pb_completacion.setValue(seg);
+                    distancia.sleep(50);
+                }
+            } catch (Exception e) {
+            }
+        }
+    };
+    
     /**
      * @param args the command line arguments
      */
@@ -539,21 +734,27 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void openIniciar(){
+        jd_iniciarPartida.pack(); //hacer grande
+        jd_iniciarPartida.setLocationRelativeTo(this); //centrar pagina con la otra
+        jd_iniciarPartida.setModal(true); //bloquear 
+        jd_iniciarPartida.setVisible(true); //mostrar la ventana
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_PartidasCrearEstre;
+    private javax.swing.JComboBox<String> cb_estrellasI;
+    private javax.swing.JComboBox<String> cb_jugadoresI;
     private javax.swing.JComboBox<String> cb_partidas;
     private javax.swing.JComboBox<String> cb_partidasJugad;
+    private javax.swing.JButton jB_agregar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -561,7 +762,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -572,14 +778,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jb_crearJugador;
     private javax.swing.JButton jb_crearPartida;
     private javax.swing.JDialog jd_iniciarPartida;
+    private javax.swing.JProgressBar pb_completacion;
     private javax.swing.JTextArea ta_descripcion;
+    private javax.swing.JTable tablaPartida;
     private javax.swing.JTextField tf_distancia;
     private javax.swing.JTextField tf_nombreEstrella;
     private javax.swing.JTextField tf_nombreJ;
@@ -588,4 +795,5 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 Partida seleccionado;
+int pos;
 }
